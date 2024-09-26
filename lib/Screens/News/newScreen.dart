@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news_assignment/Controllers/authController.dart';
 import 'package:news_assignment/Providers/newState.dart';
 import 'package:provider/provider.dart';
 
-import '../../Providers/providerState.dart';
 import '../../Theme/theme.dart';
-import '../../Utils/apiEndPoints.dart';
 
 class NewScreen extends StatelessWidget {
   NewScreen({super.key});
@@ -28,50 +25,6 @@ class NewScreen extends StatelessWidget {
 
         backgroundColor: SystemTheme.primary,
         actions: [
-          GestureDetector(
-            onTap: () {
-              showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                        title: const Text('Select Country'),
-                        content: DropdownButton(
-                            value: Provider.of<ProviderState>(context).country,
-                            items: ApiEndPoints.topHeadlines.countryCode.keys
-                                .map((e) => DropdownMenuItem(
-                                    value: e, child: Text(e.toUpperCase())))
-                                .toList(),
-                            onChanged: (value) {
-                              Provider.of<ProviderState>(context, listen: false)
-                                  .setCountry(value!);
-                              Navigator.pop(context);
-                            }));
-                  });
-            },
-            child: Row(
-              children: [
-                SvgPicture.asset(
-                  'assets/images/Vector.svg',
-                  color: Colors.white,
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.01,
-                ),
-                Consumer<ProviderState>(
-                  builder: (context, countryProvider, child) {
-                    return Text(
-                      countryProvider.country.toUpperCase(),
-                      style: GoogleFonts.poppins(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
-          ),
           IconButton(
             onPressed: () {
               authController.signOutController(context);
