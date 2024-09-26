@@ -1,7 +1,7 @@
 class ApiEndPoints {
   static const String baseUrl = "https://newsapi.org/v2";
   static _TopHeadlines topHeadlines = _TopHeadlines();
-  final String apiKey = "a0ea2b6832c3457782341782194ec50e";
+  final String apiKey = "your API key";
 }
 
 class _TopHeadlines {
