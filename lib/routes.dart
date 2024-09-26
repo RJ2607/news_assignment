@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_assignment/Screens/Authentication/loginScreen.dart';
 import 'package:news_assignment/Screens/Authentication/signUpScreen.dart';
+import 'package:news_assignment/Screens/News/newScreen.dart';
 
 import 'Screens/Home/homeScreen.dart';
 
@@ -13,6 +14,9 @@ class RoutesGenerator {
         return MaterialPageRoute(builder: (_) => SignUpScreen());
       case '/login':
         return MaterialPageRoute(builder: (_) => LoginScreen());
+      case '/newScreen':
+        return MaterialPageRoute(builder: (_) => NewScreen());
+
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(
