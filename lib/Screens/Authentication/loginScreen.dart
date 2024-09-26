@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news_assignment/Controllers/authController.dart';
 import 'package:news_assignment/Theme/theme.dart';
+import 'package:provider/provider.dart';
+
+import '../../Providers/obsecureTextState.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -13,6 +16,8 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ObsecureTextState obsecureTextState =
+        Provider.of<ObsecureTextState>(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
@@ -27,8 +32,7 @@ class LoginScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: SystemTheme.primary)),
             const Spacer(),
-            Form(
-                child: TextFormField(
+            TextFormField(
               controller: _emailController,
               textInputAction: TextInputAction.next,
               decoration: InputDecoration(
@@ -42,13 +46,19 @@ class LoginScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
-            )),
+            ),
             SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-            Form(
-                child: TextFormField(
+            TextFormField(
               controller: _passwordController,
               textInputAction: TextInputAction.next,
+              obscureText: obsecureTextState.obsecureText,
               decoration: InputDecoration(
+                suffixIcon: IconButton(
+                  icon: obsecureTextState.icon,
+                  onPressed: () {
+                    obsecureTextState.toggleObsecureText();
+                  },
+                ),
                 fillColor: SystemTheme.secondary,
                 filled: true,
                 labelText: "Password",
@@ -59,7 +69,7 @@ class LoginScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
-            )),
+            ),
             const Spacer(),
             Center(
               child: ElevatedButton(
@@ -69,7 +79,8 @@ class LoginScreen extends StatelessWidget {
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: SystemTheme.primary,
-                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
