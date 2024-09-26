@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../ProviderHelper/providerState.dart';
+import '../Providers/providerState.dart';
 
 class AuthController {
   void signUpController(
